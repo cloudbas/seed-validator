@@ -1,7 +1,7 @@
 # seed-validator
 Python usage:
 
-Install "requests_html -> "pip install requests_html
+Install "requests_html" -> pip install requests_html
 
 ```python
 from requests_html import HTMLSession
