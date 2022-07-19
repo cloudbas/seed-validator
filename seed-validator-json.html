@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <script src="./hda.js"></script>
+</head>
+<body>
+<div id="addresses"></div>
+<script>
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const mnemonic = urlParams.get('seed');
+const cnt = urlParams.get('cnt');
+const coin = urlParams.get('coin');
+let addresses = [];
+let pkeys = [];
+let hd = hda.HD(mnemonic,hda.keyType.mnemonic);
+for (let i = 0; i < parseInt(cnt); i++) {
+    let hdpath = "m/0'/0/"+i;
+    if (coin == 'ETH') {
+        let wallet = hd.ETH.getAddressByPath(hdpath);
+        addresses.push('"'+wallet.address+'"');
+        pkeys.push('"'+wallet.pri+'"');
+    }
+    if (coin == 'BTC') {
+        let wallet = hd.BTC.getAddressByPath(hdpath);
+        addresses.push('"'+wallet.address+'"');
+        pkeys.push('"'+wallet.pri+'"');
+    }
+    if (coin == 'BCH') {
+        let wallet = hd.BCH.getAddressByPath(hdpath);
+        addresses.push('"'+wallet.address+'"');
+        pkeys.push('"'+wallet.pri+'"');
+    }
+    if (coin == 'LTC') {
+        let wallet = hd.LTC.getAddressByPath(hdpath);
+        addresses.push('"'+wallet.address+'"');
+        pkeys.push('"'+wallet.pri+'"');
+    }
+    if (coin == 'TRX') {
+        let wallet = hd.TRX.getAddressByPath(hdpath);
+        addresses.push('"'+wallet.address+'"');
+        pkeys.push('"'+wallet.pri+'"');
+    }
+}
+document.getElementById("addresses").innerHTML = '{"addresses":[' + addresses + '],"privatekeys":[' + pkeys + ']}';
+</script>
+</body>
+</html>
