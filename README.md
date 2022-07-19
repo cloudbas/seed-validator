@@ -15,4 +15,6 @@ r.html.render()
 result = r.html.find('#addresses', first=True)
 
 print(result.text)
+
+# Result -> {"addresses":["0x74664c1aE516EaF7e193bded3ba0a0d587D034a4"],"privatekeys":["1b60f85f93c078fe60088eb564ae0308465b74d3b021d7e7abadb5916e7651c0"]}
 ```
